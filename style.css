@@ -1,0 +1,185 @@
+/* --- Global Styles --- */
+body {
+    background-color: #fef9f6;
+    /* Attempt to use Computer Modern Sans Serif with fallbacks */
+    font-family: "Computer Modern Sans Serif", "Latin Modern Sans", "TeX Gyre Heros", Arial, sans-serif;
+    margin: 0;
+    padding: 20px 0; /* Add some space top/bottom */
+    line-height: 1.6; /* Improve readability */
+    color: #333; /* Default text color */
+}
+
+/* --- Content Wrapper --- */
+.content-wrapper {
+    max-width: 750px; /* Maximum width of the content area */
+    margin: 20px auto; /* Center the wrapper horizontally, add top/bottom margin */
+    padding: 25px 40px; /* Internal padding (top/bottom, left/right) */
+    background-color: #fff; /* White background for the content box itself */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Optional: subtle shadow */
+    border-radius: 4px; /* Optional: slightly rounded corners */
+}
+
+/* --- Header Styles --- */
+header {
+    margin-bottom: 20px;
+}
+
+.main-name {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600; /* Slightly bolder */
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.website-title {
+    text-align: center;
+    font-size: 20px;
+    font-style: italic;
+    color: #555; /* Slightly lighter color for title */
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* --- Horizontal Separator --- */
+hr.separator {
+    border: 0;
+    height: 1px;
+    background-color: #ddd; /* Light grey line */
+    margin: 30px 0; /* Space above and below the line */
+}
+
+/* --- Columns Layout (using Flexbox) --- */
+.columns-container {
+    display: flex;
+    gap: 30px; /* Space between the columns */
+}
+
+.left-column {
+    flex: 1; /* Takes up 1 part of the available space */
+    /* The vertical line is the right border of the left column */
+    border-right: 1px solid #ccc;
+    padding-right: 30px; /* Space between text and the vertical line */
+}
+
+.right-column {
+    flex: 1.8; /* Takes up 1.8 parts (adjust ratio as needed for "wider") */
+}
+
+/* --- Column Content Styling --- */
+.left-column h3,
+.right-column h2 {
+    margin-top: 0; /* Remove extra top margin for first heading in columns */
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee; /* Subtle line under headings */
+    font-size: 18px; /* Consistent heading size in columns */
+    font-weight: 600;
+}
+
+.left-column ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.left-column li {
+    margin-bottom: 8px;
+}
+
+.quotes-section blockquote {
+    margin-left: 0; /* Reset default blockquote indent */
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 3px solid #e0d8d1; /* A border matching the background tone */
+    font-style: italic;
+    color: #555;
+}
+
+.quotes-section cite {
+    display: block; /* Put cite on its own line */
+    margin-top: 5px;
+    font-style: normal; /* Overrides blockquote italic */
+    font-size: 0.9em;
+    text-align: right;
+    color: #777;
+}
+
+/* --- Right Column Ordered List Styling --- */
+.right-column ol {
+    /* --- ADD/MODIFY THESE --- */
+    display: flex;                 /* Enable flexbox */
+    flex-direction: column-reverse;/* Stack items bottom-to-top */
+    list-style: none;              /* Hide default numbers */
+    padding-left: 0;               /* Reset default padding */
+    margin-left: 0;                /* Reset default margin */
+    counter-reset: reversed-list-counter; /* Initialize counter */
+    /* --- END ADD/MODIFY --- */
+}
+
+.right-column li {
+    margin-bottom: 12px; /* Space between numbered items */
+    /* --- ADD/MODIFY THESE --- */
+    position: relative;           /* Needed for positioning ::before */
+    padding-left: 25px;          /* Create space for custom number */
+    counter-increment: reversed-list-counter; /* Increment counter for each li */
+    /* --- END ADD/MODIFY --- */
+}
+
+/* --- ADD THIS NEW RULE --- */
+/* Style and position the custom counter number */
+.right-column li::before {
+    content: counter(reversed-list-counter) "."; /* Display number and dot */
+    position: absolute;
+    left: 0;
+    top: 0; /* Adjust if vertical alignment is off */
+    width: 20px; /* Fixed width ensures alignment */
+    text-align: right; /* Align numbers to the right before the text */
+    font-weight: bold; /* Make numbers slightly bolder */
+    color: #333; /* Number color */
+     /* You might need to tweak 'top' or add 'line-height' here
+        if the number doesn't align perfectly vertically with the text */
+}
+/* --- END ADD NEW RULE --- */
+
+
+/* --- Link Styles --- */
+a {
+    color: #0056b3; /* A standard blue color */
+    text-decoration: none; /* Remove underline by default */
+}
+
+a:visited {
+    color: #555a60; /* Grey color for visited links */
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline; /* Add underline on hover/focus for accessibility */
+    color: #003d80; /* Darker blue on hover */
+}
+
+/* --- Optional: Responsive Adjustments --- */
+@media (max-width: 600px) {
+    .columns-container {
+        flex-direction: column; /* Stack columns on small screens */
+    }
+
+    .left-column {
+        border-right: none; /* Remove vertical line when stacked */
+        padding-right: 0;
+        border-bottom: 1px solid #ccc; /* Add horizontal line between them */
+        padding-bottom: 20px; /* Space before the next column starts */
+        margin-bottom: 20px; /* Space before the next column starts */
+    }
+
+    .content-wrapper {
+        padding: 20px; /* Reduce padding on smaller screens */
+    }
+
+    /* Ensure reversed list still works well when stacked */
+    .right-column ol {
+        /* No changes needed here specifically for responsive,
+           column-reverse still works */
+    }
+}
